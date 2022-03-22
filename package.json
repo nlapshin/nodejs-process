@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./server.js",
-    "start:debug": "npx nodemon ./server.js"
+    "start:debug": "npx nodemon ./server.js",
+    "start-cluster:debug": "npx nodemon ./server-cluster.js"
   },
   "repository": {
     "type": "git",
