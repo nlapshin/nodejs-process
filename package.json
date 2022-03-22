@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/server.js",
+    "start:prof": "node --prof ./src/server.js",
+    "start:clinic": "npx clinic doctor -- node ./src/server.js",
+    "start:bubbleprof": "npx clinic bubbleprof -- node ./src/server.js",
     "start:debug": "npx nodemon ./src/server.js",
     "start-cluster:debug": "npx nodemon ./src/server-cluster.js",
     "start-pm2": "pm2 start src/server.js -i max"

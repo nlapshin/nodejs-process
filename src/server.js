@@ -1,4 +1,5 @@
 const express = require('express')
+const {Worker} = require("worker_threads")
 const data = require('./data')
 
 const PORT = process.env.PORT || 4000
@@ -18,6 +19,27 @@ function server() {
     console.timeEnd('slow')
 
     return res.status(200).send({ likes })
+  })
+
+  app.get('/slow-thread', (req, res) => {
+    console.time('slow-thread')
+
+    const worker = new Worker("./src/worker.js", {workerData: {users: data.users}});
+
+    //Listen for a message from worker
+    worker.once("message", likes => {
+      res.status(200).send({ likes })
+
+      console.timeEnd('slow-thread')
+    });
+
+    worker.on("error", error => {
+      console.log(error);
+    });
+
+    worker.on("exit", exitCode => {
+      console.log(exitCode);
+    })
   })
 
   app.listen(PORT, (err) => {
