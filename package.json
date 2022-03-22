@@ -4,7 +4,9 @@
   "description": "NodeJS process",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server.js",
+    "start:debug": "npx nodemon ./server.js"
   },
   "repository": {
     "type": "git",
@@ -17,10 +19,12 @@
   },
   "homepage": "https://github.com/nlapshin/nodejs-process#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "lodash.range": "^3.2.0"
   },
   "devDependencies": {
     "autocannon": "^7.7.2",
-    "clinic": "^11.1.0"
+    "clinic": "^11.1.0",
+    "nodemon": "^2.0.15"
   }
 }
