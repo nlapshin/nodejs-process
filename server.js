@@ -1,34 +1,42 @@
 const express = require('express')
 const data = require('./data')
 
-const app = express()
-
 const PORT = process.env.PORT || 4000
 
-app.get('/fast', (req, res) => {
-  return res.status(200).send(data.user)
-})
+function server() {
+  const app = express()
 
-app.get('/slow', (req, res) => {
-  console.time('slow')
+  app.get('/fast', (req, res) => {
+    return res.status(200).send(data.user)
+  })
 
-  const likes = concatLikes(data.users)
+  app.get('/slow', (req, res) => {
+    console.time('slow')
 
-  console.timeEnd('slow')
+    const likes = concatLikes(data.users)
 
-  return res.status(200).send({ likes })
-})
+    console.timeEnd('slow')
 
-app.listen(PORT, (err) => {
-  if (!err) {
-    console.log(`Server started on ${PORT} port`)
+    return res.status(200).send({ likes })
+  })
+
+  app.listen(PORT, (err) => {
+    if (!err) {
+      console.log(`Server started on ${PORT} port`)
+    }
+  })
+
+  function concatLikes(users) {
+    return users.reduce((res, user) => {
+      res = res.concat(user.like)
+      
+      return res
+    }, [])
   }
-})
+}
 
-function concatLikes(users) {
-  return users.reduce((res, user) => {
-    res = res.concat(user.like)
-    
-    return res
-  }, [])
+if (module.parent) {
+  module.exports = server
+} else {
+  server()
 }
