@@ -24,12 +24,13 @@
   },
   "homepage": "https://github.com/nlapshin/nodejs-process#readme",
   "dependencies": {
-    "express": "^4.17.3",
-    "lodash.range": "^3.2.0"
+    "express": "^4.18.2",
+    "lodash.range": "^3.2.0",
+    "piscina": "^4.0.0"
   },
   "devDependencies": {
-    "autocannon": "^7.7.2",
-    "clinic": "^11.1.0",
-    "nodemon": "^2.0.15"
+    "autocannon": "^7.11.0",
+    "clinic": "^12.1.0",
+    "nodemon": "^2.0.22"
   }
 }
